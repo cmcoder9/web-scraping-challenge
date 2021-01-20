@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, jsonify
 from flask_pymongo import PyMongo
-import scrape_NASA_Mars_News
+import scrape_mars
+import sys
 
 # import scrape_costa
 
@@ -25,7 +26,8 @@ def scrape():
 
     # Run the scrape function
     mars = scrape_mars.scrape_info()
-
+    print(mars)
+    
     # Update the Mongo database using update and upsert=True
     mongo.db.collection.update({}, mars_data, upsert=True)
 
